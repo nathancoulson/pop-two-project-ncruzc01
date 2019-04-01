@@ -12,8 +12,41 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
+
+    private int numerator;
+    private int denominator;
+
+    private int gcd(int p, int q) {
+        if (q == 0) {
+            return p;
+        }
+        return gcd(q, p % q);
+    }
+
+    private int[] normalise(int n, int d) {
+        if (d == 0) {
+            throw new ArithmeticException("Divide by zero");
+        }
+
+        if (d < 0) {
+            d *= -1;
+            n *= -1;
+        }
+
+        int gcd_val = gcd(n, d);
+        int values[] = new int[2];
+        n = n/gcd_val;
+        d = d/gcd_val;
+        values[0] = n;
+        values[1] = d;
+        return values;
+    }
+
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+
+
+        this.numerator = normalise(numerator, denominator)[0];
+        this.denominator =  normalise(numerator, denominator)[1];
     }
 
     /**
@@ -21,9 +54,9 @@ public class FractionImpl implements Fraction {
      *
      * @param wholeNumber representing the numerator
      */
-    public FractionImpl(int wholeNumber) {
-        // TODO
-    }
+//    public FractionImpl(int wholeNumber) {
+//        // TODO
+//    }
 
     /**
      * The parameter is a <pre>String</pre> containing either a whole number, such as `5` or `-3`, or a fraction,
@@ -36,9 +69,9 @@ public class FractionImpl implements Fraction {
      *
      * @param fraction the string representation of the fraction
      */
-    public FractionImpl(String fraction) {
-        // TODO
-    }
+//    public FractionImpl(String fraction) {
+//        // TODO
+//    }
 
     /**
      * @inheritDoc
@@ -133,6 +166,6 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        return null;
+        return this.numerator + "/" + this.denominator;
     }
 }
