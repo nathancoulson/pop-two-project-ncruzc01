@@ -28,23 +28,22 @@ public class FractionImpl implements Fraction {
             throw new ArithmeticException("Divide by zero");
         }
 
-        if (d < 0) {
-            d *= -1;
-            n *= -1;
-        }
-
         int gcd_val = gcd(n, d);
         int values[] = new int[2];
         n = n/gcd_val;
         d = d/gcd_val;
+
+        if (d < 0) {
+            n *= -1;
+            d *= -1;
+        }
+
         values[0] = n;
         values[1] = d;
         return values;
     }
 
     public FractionImpl(int numerator, int denominator) {
-
-
         this.numerator = normalise(numerator, denominator)[0];
         this.denominator =  normalise(numerator, denominator)[1];
     }
@@ -54,9 +53,10 @@ public class FractionImpl implements Fraction {
      *
      * @param wholeNumber representing the numerator
      */
-//    public FractionImpl(int wholeNumber) {
-//        // TODO
-//    }
+    public FractionImpl(int wholeNumber) {
+        this.numerator = wholeNumber;
+        this.denominator = 1;
+    }
 
     /**
      * The parameter is a <pre>String</pre> containing either a whole number, such as `5` or `-3`, or a fraction,
@@ -69,9 +69,23 @@ public class FractionImpl implements Fraction {
      *
      * @param fraction the string representation of the fraction
      */
-//    public FractionImpl(String fraction) {
-//        // TODO
-//    }
+    public FractionImpl(String fraction) {
+        String trimmed = fraction.trim();
+
+        if (!trimmed.contains("/")) {
+            this.numerator = Integer.parseInt(trimmed);
+            this.denominator = 1;
+        }
+        else {
+            String[] bits = trimmed.split("/");
+
+            this.numerator = normalise(Integer.parseInt(bits[0]), Integer.parseInt(bits[1]))[0];
+            this.denominator = normalise(Integer.parseInt(bits[0]), Integer.parseInt(bits[1]))[1];
+        }
+
+
+
+    }
 
     /**
      * @inheritDoc
@@ -166,6 +180,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
+        if (this.denominator == 1) {
+            return Integer.toString(this.numerator);
+        }
         return this.numerator + "/" + this.denominator;
     }
 }

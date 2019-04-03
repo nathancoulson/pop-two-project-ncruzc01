@@ -6,7 +6,7 @@ public class Main {
 
 
 
-        FractionImpl instance = new FractionImpl(20, -45);
+        FractionImpl instance = new FractionImpl("   76    ");
         System.out.println(instance);
 
 
