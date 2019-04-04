@@ -212,18 +212,49 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * This method takes no parameters. The method returns a new Fraction object
+     * with the absolute value of the Fraction it was called upon.
      */
     @Override
     public Fraction abs() {
-        return null;
+
+        //initialise numerator and denominator for new Fraction. Set d to the denominator
+        //of the Fraction the method is called on (this will be the same)
+
+        int n;
+        int d = this.denominator;
+
+        //check if the numerator of the called Fraction is negative, if so set n to the numerator * -1
+        //else set n to the unchanged numerator
+
+        if (this.numerator < 0) {n = this.numerator * -1;}
+        else {n = this.numerator;}
+
+        //create new Fraction object with the variables n and d, return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
      * @inheritDoc
+     * This method takes no parameters. The method returns a new Fraction object with the same value
+     * as the Fraction the method was called on but with the opposite sign.
      */
     @Override
     public Fraction negate() {
-        return null;
+
+        //initialise numerator and denominator for new Fraction. Multiply the numerator by -1 to negate the sign.
+
+        int n = this.numerator * -1;
+        int d = this.denominator;
+
+        //create new Fraction object with the variables n and d, return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
@@ -236,14 +267,26 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * This method takes a Fraction as a parameter and returns a boolean value: true if the Fractions are equal
+     * and false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+
+        //cast obj as Fraction
+
+        FractionImpl toEql = (FractionImpl) obj;
+
+        //check if the numerator and denominator of the Fractions are equal, if so return boolean value true
+        //, if not return boolean value false
+
+        if (this.numerator == toEql.numerator && this.denominator == toEql.denominator) {return true;}
+        else {return false;}
     }
 
     /**
      * @inheritDoc
+     * Takes no parameters. Throws an exception as clone is not supported.
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
@@ -252,18 +295,44 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * Takes no parameters. Returns a new Fraction in which the numerator and denominator of
+     * the Fraction the method was called on are switched.
      */
     @Override
     public Fraction inverse() {
-        return null;
+
+        //initialise numerator and denominator for new Fraction as the denominator and numerator (respectively)
+        //of the Fraction the method is called on.
+
+        int n = this.denominator;
+        int d = this.numerator;
+
+        //create new Fraction object with the variables n and d, return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
      * @inheritDoc
+     * This takes a Fraction as a parameter. The method returns an int.
      */
     @Override
     public int compareTo(Fraction o) {
-        return 0;
+
+        //cast o as Fraction
+
+        FractionImpl toCom = (FractionImpl) o;
+
+        //calculate the value of both Fractions as doubles
+
+        double thisVal = ((double) this.numerator) / this.denominator;
+        double otherVal = ((double) toCom.numerator) / toCom.denominator;
+
+        //return the output of the Double.compare method
+
+        return Double.compare(thisVal, otherVal);
     }
 
     /**
