@@ -16,6 +16,8 @@ public class FractionImpl implements Fraction {
     private int numerator;
     private int denominator;
 
+    //implement recursive function to find the Greatest Common Divisor following Euclid's algorithm
+
     private int gcd(int p, int q) {
         if (q == 0) {
             return p;
@@ -23,7 +25,12 @@ public class FractionImpl implements Fraction {
         return gcd(q, p % q);
     }
 
+    //implement normalise function using the gcd function
+
     private int[] normalise(int n, int d) {
+
+        //throw exception is denominator is zero
+
         if (d == 0) {
             throw new ArithmeticException("Divide by zero");
         }
@@ -32,6 +39,8 @@ public class FractionImpl implements Fraction {
         int values[] = new int[2];
         n = n/gcd_val;
         d = d/gcd_val;
+
+        //transform so a negative fraction always has a negative numerator, not a negative denominator
 
         if (d < 0) {
             n *= -1;
@@ -44,6 +53,9 @@ public class FractionImpl implements Fraction {
     }
 
     public FractionImpl(int numerator, int denominator) {
+
+        //use the normalise function to set the object private member variables
+
         this.numerator = normalise(numerator, denominator)[0];
         this.denominator =  normalise(numerator, denominator)[1];
     }
@@ -54,6 +66,9 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
+
+        //set implicit denominator to 1, handle printing with the toString method
+
         this.numerator = wholeNumber;
         this.denominator = 1;
     }
@@ -70,12 +85,20 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
+
+        //use the trim String method to remove white space before and after the fraction characters
+
         String trimmed = fraction.trim();
+
+        //whole number procedure - if no "/" is present
 
         if (!trimmed.contains("/")) {
             this.numerator = Integer.parseInt(trimmed);
             this.denominator = 1;
         }
+
+        //fraction procedure - split on "/" then convert string numbers to int and pass to the normalise function
+
         else {
             String[] bits = trimmed.split("/");
 
@@ -92,10 +115,16 @@ public class FractionImpl implements Fraction {
     @Override
     public Fraction add(Fraction f) {
 
+        //cast parameter f as class FractionImpl
+
         FractionImpl frac = (FractionImpl) f;
+
+        //calculate numerator and denominator for the fraction sum
 
         int n = (this.numerator * frac.denominator) + (this.denominator * frac.numerator);
         int d = (this.denominator * frac.denominator);
+
+        //construct a new instance of FractionImpl and return the resulting object
 
         FractionImpl result = new FractionImpl(n, d);
 
