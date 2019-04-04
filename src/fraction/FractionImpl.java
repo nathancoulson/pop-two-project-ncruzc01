@@ -84,7 +84,6 @@ public class FractionImpl implements Fraction {
         }
 
 
-
     }
 
     /**
@@ -92,7 +91,15 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        return null;
+
+        FractionImpl frac = (FractionImpl) f;
+
+        int n = (this.numerator * frac.denominator) + (this.denominator * frac.numerator);
+        int d = (this.denominator * frac.denominator);
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
