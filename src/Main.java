@@ -51,7 +51,7 @@ public class Main {
 
         //        method equals test
 
-        boolean bolResult = instance1.equals(instance2);
+        boolean bolResult = instance1.equals("String object");
 
         System.out.println(bolResult);
 
@@ -66,6 +66,7 @@ public class Main {
         int intResult = instance1.compareTo(instance2);
 
         System.out.println(intResult);
+
 
 
 

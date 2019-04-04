@@ -273,6 +273,10 @@ public class FractionImpl implements Fraction {
     @Override
     public boolean equals(Object obj) {
 
+        //check if object passed in as a parameter is an instance of Fraction
+
+        if (!(obj instanceof Fraction)) {return false;}
+
         //cast obj as Fraction
 
         FractionImpl toEql = (FractionImpl) obj;
