@@ -111,20 +111,23 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * This Fraction method accepts a Fraction as a parameter and
+     * returns the sum of the Fraction it is called on and the
+     * Fraction that is passed to the method.
      */
     @Override
     public Fraction add(Fraction f) {
 
-        //cast parameter f as class FractionImpl
+        //cast parameter f as class Fraction
 
-        FractionImpl frac = (FractionImpl) f;
+        FractionImpl toAdd = (FractionImpl) f;
 
         //calculate numerator and denominator for the fraction sum
 
-        int n = (this.numerator * frac.denominator) + (this.denominator * frac.numerator);
-        int d = (this.denominator * frac.denominator);
+        int n = (this.numerator * toAdd.denominator) + (this.denominator * toAdd.numerator);
+        int d = (this.denominator * toAdd.denominator);
 
-        //construct a new instance of FractionImpl and return the resulting object
+        //construct a new instance of Fraction and return the resulting object
 
         FractionImpl result = new FractionImpl(n, d);
 
@@ -133,26 +136,78 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * This Fraction method accepts a Fraction as a parameter and
+     * returns the difference of the Fraction it is called on and the
+     * Fraction that is passed to the method.
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+
+        //cast parameter f as class Fraction
+
+        FractionImpl toSub = (FractionImpl) f;
+
+        //calculate numerator and denominator for the fraction difference
+
+        int n = (this.numerator * toSub.denominator) - (this.denominator * toSub.numerator);
+        int d = (this.denominator * toSub.denominator);
+
+        //construct a new instance of Fraction and return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
+
     }
 
     /**
      * @inheritDoc
+     * This Fraction method accepts a Fraction as a parameter and
+     * returns the product of the Fraction it is called on and the
+     * Fraction that is passed to the method.
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
+
+        //cast parameter f as class Fraction
+
+        FractionImpl toMul = (FractionImpl) f;
+
+        //calculate numerator and denominator for the fraction product
+
+        int n = (this.numerator * toMul.numerator);
+        int d = (this.denominator * toMul.denominator);
+
+        //construct a new instance of Fraction and return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
      * @inheritDoc
+     * This Fraction method accepts a Fraction as a parameter and
+     * returns the division of the Fraction it is called on and the
+     * Fraction that is passed to the method.
      */
     @Override
     public Fraction divide(Fraction f) {
-        return null;
+
+        //cast parameter f as class Fraction
+
+        FractionImpl toDiv = (FractionImpl) f;
+
+        //calculate numerator and denominator for the fraction division
+
+        int n = (this.numerator * toDiv.denominator);
+        int d = (this.denominator * toDiv.numerator);
+
+        //construct a new instance of Fraction and return the resulting object
+
+        FractionImpl result = new FractionImpl(n, d);
+
+        return result;
     }
 
     /**
