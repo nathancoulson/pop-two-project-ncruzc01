@@ -6,8 +6,8 @@ public class Main {
 
 //        method addition test
 
-        Fraction instance1 = new FractionImpl("   1/8    ");
-        Fraction instance2 = new FractionImpl("   1/8    ");
+        Fraction instance1 = new FractionImpl("   24/-60    ");
+        Fraction instance2 = new FractionImpl(3, 9);
 
         Fraction result = instance1.add(instance2);
 
@@ -37,7 +37,7 @@ public class Main {
 
         //        method abs test
 
-        Fraction instance3 = new FractionImpl("   2    ");
+        Fraction instance3 = new FractionImpl("5    ");
 
         Fraction absResult = instance3.abs();
 

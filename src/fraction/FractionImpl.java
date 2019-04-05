@@ -18,11 +18,11 @@ public class FractionImpl implements Fraction {
 
     //implement recursive function to find the Greatest Common Divisor following Euclid's algorithm
 
-    private int gcd(int p, int q) {
-        if (q == 0) {
-            return p;
+    private int gcd(int x, int y) {
+        if (y == 0) {
+            return x;
         }
-        return gcd(q, p % q);
+        return gcd(y, x % y);
     }
 
     //implement normalise function using the gcd function
@@ -34,6 +34,8 @@ public class FractionImpl implements Fraction {
         if (d == 0) {
             throw new ArithmeticException("Divide by zero");
         }
+
+        //use gcd function to calculate GCD and transform numerator and denominator values
 
         int gcd_val = gcd(n, d);
         int values[] = new int[2];
@@ -259,6 +261,7 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * No special implementation of the hashCode method (generic to objects)
      */
     @Override
     public int hashCode() {
@@ -320,7 +323,9 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
-     * This takes a Fraction as a parameter. The method returns an int.
+     * This takes a Fraction as a parameter. The method returns an int. The int is 0 if the
+     * Fractions are equal in value, negative if the Fraction the method is called on is
+     * less than the Fraction passed as a parameter, and positive if otherwise.
      */
     @Override
     public int compareTo(Fraction o) {
@@ -341,12 +346,20 @@ public class FractionImpl implements Fraction {
 
     /**
      * @inheritDoc
+     * Takes no parameters. Returns a String representation of the Fraction the method is
+     * called on.
      */
     @Override
     public String toString() {
+
+        //check if the denominator is 1. If so just return the numerator (whole number)
+
         if (this.denominator == 1) {
             return Integer.toString(this.numerator);
         }
+
+        //else return Fraction as String (implicit conversion via addition to a String).
+
         return this.numerator + "/" + this.denominator;
     }
 }
